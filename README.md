@@ -7,7 +7,7 @@
 3. Right-click the "Task Scheduler Library" branch, and select the New Folder option.
 then follow the step show in the images
 
-![Alt text](images/Screenshot (211).png?raw=true "Title")
-![Alt text](images/Screenshot (212).png?raw=true "Title")
-![Alt text](images/Screenshot (213).png?raw=true "Title")
-![Alt text](images/Screenshot (214).png?raw=true "Title")
+![Alt text](./images/Screenshot (211).png?raw=true "Title")
+![Alt text](./images/Screenshot (212).png?raw=true "Title")
+![Alt text](./images/Screenshot (213).png?raw=true "Title")
+![Alt text](./images/Screenshot (214).png?raw=true "Title")
