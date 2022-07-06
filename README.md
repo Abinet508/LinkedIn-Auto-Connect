@@ -17,10 +17,12 @@ You can install the required packages running this command: `pip3 install seleni
 ## `Introduction`
 
 > This piece of code will help yo to increase your linkedin connection by inviting 100 connections per week.
+
 > I included all the required steps you need to achive this with out a problem,
 > this program will run in background, so no need to wait for the code till it
 > finishs, you can do you thing without interruption while the script increase you
 > connections.
+
 
 > On Windows 10, Task Scheduler is a tool that allows you to create and run virtually any task automatically. Typically, the system and certain apps use the scheduler to automate maintenance tasks (such as disk defragmentation, disk cleanup, and updates), but anyone can use it. With this experience, you can start applications, run commands, and execute scripts at a particular day and time, or you can also trigger tasks when a specific event occurs.
 
