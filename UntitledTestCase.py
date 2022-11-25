@@ -3,7 +3,7 @@ from csv import excel_tab
 import email
 from selectors import SelectSelector
 from sqlite3 import connect
-import pyautogui
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -94,7 +94,7 @@ class LinkedIn(unittest.TestCase):
                    
                 
             except Exception as e:
-                print(e)
+                #print(e)
                 if not(profession ==""):
                     try:
                         driver.implicitly_wait(10)
@@ -116,22 +116,26 @@ class LinkedIn(unittest.TestCase):
                         driver.quit()
                         driver.find_element(By.XPATH,"//span[text()='Got it']").click() 
             finally:
+                time.sleep(2)
                 driver.implicitly_wait(6)
                 Connect=WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, "//button/span[text()='Connect']")))  
                 try:
                     Connect.click()
                 except:
                         driver.execute_script("arguments[0].click();", Connect) 
-                   
+                finally:
+                    print(profession)
+                    if not (profession ==""):
+                        try:
+                            driver.implicitly_wait(10)
+                            Send=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//button[@aria-label='Send now']")))
+                            Send.click()
+                        except:    
+                            driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//button[@aria-label='Send now']"))))
+   
                                     
                 time.sleep(2)
                 
-               
-                #element2 = WebDriverWait(driver, 30).until(EC.visibility_of_element_located((By.XPATH, "//ul/li[3]//ul/li")))
-            
-                #length = len(list(driver.find_elements_by_xpath("//ul/li[3]//ul/li")))
-                #print(length)
-            #ERROR: Caught exception [ERROR: Unsupported command [doubleClick | xpath=//aside[@id='msg-overlay']/div/header/div | ]]
         
     def is_element_present(self, how, what):
         try: self.driver.find_element(by=how, value=what)
