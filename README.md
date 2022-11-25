@@ -45,7 +45,7 @@ You can install the required packages running this command: `pip3 install seleni
 
 
 > make sure to update Chrome driver as soon as new update is available
- - Note that the Chrome driver has to have same version as Chrome.
+ - Note that the Chrome driver must have same version as Chrome.
  - to view your Chrome version goto Chrome browser and in Click on about tab the you can view the version
 
 
