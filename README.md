@@ -42,3 +42,12 @@ You can install the required packages running this command: `pip3 install seleni
 6. Finally, click on action tab > New and configure it as shown in the image
 
    ![Alt text](./images/Screenshot214.png?raw=true "Title")
+
+
+> make sure to update Chrome driver as soon as new update is available
+ - Note that the Chrome driver has to have same version as Chrome.
+ - to view your Chrome version goto Chrome browser and in Click on about tab the you can view the version
+
+
+ > add you email, password and profession  inside .env file inside Credentials folder
+  - if .env file is not visible please check hidden items inside View  
