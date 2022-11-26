@@ -19,8 +19,8 @@ from decouple import AutoConfig
 class LinkedIn(unittest.TestCase):
     def setUp(self):
         options = Options()
-        #options.add_argument('--headless')
-        #options.add_argument('--disable-gpu') 
+        # options.add_argument('--headless')
+        # options.add_argument('--disable-gpu') 
         self.driver = webdriver.Chrome(options=options)
         self.driver.headless=True
         self.driver.implicitly_wait(300)
@@ -71,14 +71,14 @@ class LinkedIn(unittest.TestCase):
             time.sleep(2)
             Show_results=WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, "(//span[text()='Show results'])[2]")))
             Show_results.click()
-        time.sleep(5)
+        time.sleep(7)
         #element2 = WebDriverWait(driver, 30).until(EC.visibility_of_element_located((By.XPATH, "//ul/li[3]//ul/li")))
         html = driver.find_element(By.TAG_NAME,'html')
         for row in range(0,80):
             
             try:
                 print("connect")
-                driver.implicitly_wait(6)
+                driver.implicitly_wait(4)
                 Connect=Connect=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//button/span[text()='Connect']")))  
                 Connect.click()
                 time.sleep(2)
@@ -91,7 +91,54 @@ class LinkedIn(unittest.TestCase):
                     except:    
                         driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//button[@aria-label='Send now']"))))
 
-                   
+                    finally:
+                            try:
+                                driver.implicitly_wait(2)  
+                                if "Unable to connect" in  driver.find_element(By.XPATH,"//*[contains(@role,'alert')]/child::*").text:
+                                    try:
+                                        driver.find_element(By.XPATH,"(//*[@type='cancel-icon']/parent::button)[1]").click()
+                                        time.sleep(2)
+                                    except:
+                                        cancel=driver.find_element(By.XPATH,"(//*[@type='cancel-icon']/parent::button)[1]").click()
+                                        driver.execute_script("arguments[0].click();", cancel)  
+                                        time.sleep(2) 
+                                    finally:
+                                        try:
+                                            driver.implicitly_wait(10)
+                                            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")  
+                                            time.sleep(2)
+                                            print('clicking Next')
+                                            next= driver.find_element(By.XPATH,"//span[text()='Next']/parent::*")
+                                            actions = ActionChains(driver)
+                                            actions.move_to_element(next).perform()
+                                            next.click()
+                                        except:
+                                            driver.implicitly_wait(10)
+                                            html.send_keys(Keys.PAGE_DOWN)
+                                            time.sleep(2)
+                                        finally:
+                                            time.sleep(2)
+                                            driver.implicitly_wait(6)
+                                            Connect=WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, "//button/span[text()='Connect']")))  
+                                            try:
+                                                Connect.click()
+                                            except:
+                                                    driver.execute_script("arguments[0].click();", Connect) 
+                                            finally:
+                                                print(profession)
+                                                if not (profession ==""):
+                                                    try:
+                                                        driver.implicitly_wait(10)
+                                                        Send=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//button[@aria-label='Send now']")))
+                                                        Send.click()
+                                                    except:    
+                                                        driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//button[@aria-label='Send now']"))))
+                            
+                                                    finally:
+                                                        time.sleep(2)        
+                            except:
+                                pass
+                            
                 
             except Exception as e:
                 #print(e)
@@ -110,32 +157,57 @@ class LinkedIn(unittest.TestCase):
                         html.send_keys(Keys.PAGE_DOWN)
                         time.sleep(2)
                         driver.switch_to.window(driver.window_handles[0])
-                        if driver.find_element(By.XPATH,"//h2[@id='ip-fuse-limit-alert__header']").text=="You’ve reached the weekly invitation limit":
-                            print("You’ve reached the weekly invitation limit")
-                        
-                        driver.quit()
-                        driver.find_element(By.XPATH,"//span[text()='Got it']").click() 
-            finally:
-                time.sleep(2)
-                driver.implicitly_wait(6)
-                Connect=WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, "//button/span[text()='Connect']")))  
-                try:
-                    Connect.click()
-                except:
-                        driver.execute_script("arguments[0].click();", Connect) 
-                finally:
-                    print(profession)
-                    if not (profession ==""):
                         try:
-                            driver.implicitly_wait(10)
-                            Send=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//button[@aria-label='Send now']")))
-                            Send.click()
-                        except:    
-                            driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//button[@aria-label='Send now']"))))
-   
-                                    
+                            #Unable to connect to Anthony Layne. Try again later.
+                            if "You’ve reached the weekly invitation limit" in driver.find_element(By.XPATH,"//h2[@id='ip-fuse-limit-alert__header']").text:
+                                print("You’ve reached the weekly invitation limit")
+                            
+                                driver.quit()
+                                break
+                                #driver.find_element(By.XPATH,"//span[text()='Got it']").click() 
+                        except: 
+                                            
+                                try:
+                                    driver.implicitly_wait(10)
+                                    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")  
+                                    time.sleep(2)
+                                    print('clicking Next')
+                                    next= driver.find_element(By.XPATH,"//span[text()='Next']/parent::*")
+                                    actions = ActionChains(driver)
+                                    actions.move_to_element(next).perform()
+                                    next.click()
+                                except:
+                                    driver.implicitly_wait(10)
+                                    html.send_keys(Keys.PAGE_DOWN)
+                                    time.sleep(2)
+                                finally:
+                                    time.sleep(2)
+                                    driver.implicitly_wait(6)
+                                    Connect=WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, "//button/span[text()='Connect']")))  
+                                    try:
+                                        Connect.click()
+                                    except:
+                                            driver.execute_script("arguments[0].click();", Connect) 
+                                    finally:
+                                        print(profession)
+                                        if not (profession ==""):
+                                            try:
+                                                driver.implicitly_wait(10)
+                                                Send=WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//button[@aria-label='Send now']")))
+                                                Send.click()
+                                            except:    
+                                                driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//button[@aria-label='Send now']"))))
+                    
+                                            finally:
+                                                time.sleep(2)    
                 time.sleep(2)
                 
+               
+                #element2 = WebDriverWait(driver, 30).until(EC.visibility_of_element_located((By.XPATH, "//ul/li[3]//ul/li")))
+            
+                #length = len(list(driver.find_elements_by_xpath("//ul/li[3]//ul/li")))
+                #print(length)
+            #ERROR: Caught exception [ERROR: Unsupported command [doubleClick | xpath=//aside[@id='msg-overlay']/div/header/div | ]]
         
     def is_element_present(self, how, what):
         try: self.driver.find_element(by=how, value=what)
