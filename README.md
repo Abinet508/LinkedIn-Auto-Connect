@@ -12,7 +12,7 @@
 - `python-decouple`
 - `unittest`
 
-You can install the required packages running this command: `pip3 install selenium python-decouple`
+You can install the required packages running this command: `pip install selenium python-decouple`
 
 ## `Introduction`
 
