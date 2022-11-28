@@ -4,6 +4,10 @@
 
 > Web Browser: `Google Chrome`
 
+> On this script I'm using chromedriver_win32.zip because I'm using Windows. for linux and mac user you can download the compatible chrome driver [here](https://chromedriver.chromium.org/downloads) as for the Scheduler you can use CRON 
+
+- The cron command-line utility is a job scheduler on Unix-like operating systems. Users who set up and maintain software environments use cron to schedule jobs, also known as cron jobs, to run periodically at fixed times, dates, or intervals.
+
 > Programing language: `Python`
 
 > Python libraries used:
@@ -18,10 +22,11 @@ You can install the required packages running this command: `pip install seleniu
 
 > This piece of code will help yo to increase your linkedin connection by inviting 100 connections per week.
 
-> I included all the required steps you need to achive this with out a problem,
-> this program will run in background, so no need to wait for the code till it
-> finishs, you can do you thing without interruption while the script increase you
-> connections.
+> I included all the required steps down below
+
+> This program will run in background, so no need to wait for the code till it finishes
+
+>  you can do your thing without interruption while the script increase you connections.
 
 
 > On Windows 10, Task Scheduler is a tool that allows you to create and run virtually any task automatically. Typically, the system and certain apps use the scheduler to automate maintenance tasks (such as disk defragmentation, disk cleanup, and updates), but anyone can use it. With this experience, you can start applications, run commands, and execute scripts at a particular day and time, or you can also trigger tasks when a specific event occurs.
