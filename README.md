@@ -51,7 +51,7 @@ You can install the required packages running this command: `pip install seleniu
 
 > make sure to update Chrome driver as soon as new update is available
  - Note that the Chrome driver must have same version as Chrome.
- - to view your Chrome version goto Chrome browser and in Click on about tab the you can view the version
+ - to view your Chrome version go to Chrome browser and in Click on about tab the you can view the version
 
 
  > add you email, password and profession  inside .env file inside Credentials folder
